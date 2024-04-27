@@ -11,6 +11,6 @@ class CalcTest(SimpleTestCase):
 
     def test_add(self):
         """Test adding number together"""
-        res = calc.add(5, 1)
+        result = calc.add(5, 1)
 
-        self.assertEqual(res, 6)
+        self.assertEqual(result, 6)
