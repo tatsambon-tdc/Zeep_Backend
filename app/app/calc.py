@@ -1,10 +1,9 @@
 """
-    Calculator 
+    Calculator
 """
 
 
 def add(x, y):
-    """ Add x and y and return the result
-    """
-    
+    """ Add x and y and return the result """
+
     return x + y
