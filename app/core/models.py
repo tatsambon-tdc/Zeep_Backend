@@ -28,10 +28,11 @@ class UserManage(BaseUserManager):
         user = self.create_user(email, password)
         user.is_staff = True
         user.is_superuser = True
+        user.save(using=self._db)
 
         return user
 
-    
+
 class User(AbstractBaseUser, PermissionsMixin):
     """ User in the systeme"""
     email = models.EmailField(max_length=255, unique=True)
