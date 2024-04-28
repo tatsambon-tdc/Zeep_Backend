@@ -11,6 +11,7 @@ EXPOSE 8000
 
 ARG DEV=false
 
+
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     apk add --update --no-cache postgresql-client  && \
@@ -28,7 +29,10 @@ RUN python -m venv /py && \
         django-user 
     
 
+
+
+
+
 ENV PATH="/py/bin:$PATH"
 
 USER $CONTAINER_USER_ID
-
