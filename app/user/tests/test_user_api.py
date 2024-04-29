@@ -96,10 +96,9 @@ class PublicUserApiTests(TestCase):
         create_user(email='test@example.com', password="badpass")
 
         payload = {
-            'email': 'test@example.com',
-            'password': 'test-user-password123',
+            'email': 'test2@example.com',
+            'password': 'test-user-pasjsword123'}
 
-        }
         res = self.client.post(TOKEN_URL, payload)
         self.assertNotIn('token', res.data)
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
@@ -147,10 +146,12 @@ class PrivateUserApiTest(TestCase):
     def test_update_user_profile(self):
         """The for updatin profile for the authenticated user"""
 
-        playload = {'name': 'new name', 'password': "new password" }
+        playload = {
+            'name': 'new name',
+            'password': 'new password'}
         res = self.client.patch(ME_URL, playload)
 
         self.user.refresh_from_db()
-        self.assertEqual(self.user.name, playload['name'] )
+        self.assertEqual(self.user.name, playload['name'])
         self.assertTrue(self.user.check_password(playload['password']))
         self.assertEqual(res.status_code, status.HTTP_200_OK)
