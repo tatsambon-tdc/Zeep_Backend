@@ -12,7 +12,6 @@ from django.contrib.auth.models import (
 
 class UserManager(BaseUserManager):
     """La classe pour gerer le model User"""
-
     def create_user(self, email, password=None, **extrafield):
         """Creation et renvoi du nouvau User"""
         if not email:
@@ -37,9 +36,8 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     """La classe user de notre sys"""
     email = models.EmailField(max_length=255, unique=True)
-    nam = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
     objects = UserManager()
     USERNAME_FIELD = 'email'
