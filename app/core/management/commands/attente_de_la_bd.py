@@ -27,4 +27,6 @@ class Command(BaseCommand):
                 self.stdout.write("la bd n'est pas encore disponible ,\
                                   Patientez 1 seconde...")
                 time.sleep(1)
-        self.stdout.write(self.style.SUCCESS("Base de Donnée disponible  !:)"))
+        self.stdout.write(self.style.SUCCESS(
+            "Base de Donnée disponible  !:)"
+            ))
