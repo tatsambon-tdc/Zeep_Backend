@@ -3,15 +3,23 @@ from django.urls import (
                          path,
                          include
                          )
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import SimpleRouter
 
 from Stamp import views
 
-router = DefaultRouter()
+router = SimpleRouter()
+router2 = SimpleRouter()
 router.register('PatternStamp', views.PatternStampViewSet)
+
+router2.register('PatternStamp',
+                 views.AdminPatternStampViewSet,
+                 basename="adminPatternStamp"
+                 )
+
 
 app_name = "Stamp"
 
 urlpatterns = [
     path('', include(router.urls)),
+    path("admin/", include(router2.urls))
 ]

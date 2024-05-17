@@ -8,28 +8,34 @@ from .permissions import IsStaff
 from rest_framework.authentication import TokenAuthentication
 
 
-class PatternStampViewSet(viewsets.ModelViewSet):
-    """Viewser pour la gesstion de
-    l'api du model PatterStamp
-    """
-    queryset = PatternStamp.objects.all()
-    authentication_classes = []
-    permission_classes = []
-
-    def get_permissions(self):
-        """
-        Instantiates and returns the list
-        of permissions that this view requires.
-        """
-        if self.request.method in ['POST', 'DELETE', 'PATCH']:
-
-            self.authentication_classes.append(TokenAuthentication)
-            self.permission_classes.append(IsStaff)
-            return [permission() for permission in self.permission_classes]
-        return []
+class MyViewSetsMinIn():
+    """Pour les element commun aux viesets"""
+    serializer_liste_class = []
+    serializer_detail_class = []
 
     def get_serializer_class(self):
         if self.action == "list":
-            return serializers.PatternStampSerializer
+            return self.serializer_liste_class
 
-        return serializers.PatternStampDetailSerializer
+        return self.serializer_detail_class
+
+
+class PatternStampViewSet(MyViewSetsMinIn, viewsets.ReadOnlyModelViewSet):
+    """
+    Lecture des Patternstamp
+    """
+    queryset = PatternStamp.objects.all()
+    serializer_liste_class = serializers.PatternStampSerializer
+    serializer_detail_class = serializers.PatternStampDetailSerializer
+
+
+class AdminPatternStampViewSet(viewsets.ModelViewSet):
+    """
+    L'administration des PatterStamp
+    """
+    queryset = PatternStamp.objects.all()
+    permission_classes = [IsStaff]
+    authentication_classes = [TokenAuthentication]
+
+    serializer_liste_class = serializers.PatternStampSerializer
+    serializer_detail_class = serializers.PatternStampDetailSerializer

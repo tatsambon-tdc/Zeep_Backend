@@ -21,4 +21,4 @@ class PatternStampDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PatternStamp
-        fields = ['id', 'titre', 'forme', 'prix']
+        fields = ['id', 'titre', 'forme', 'prix', 'creator']

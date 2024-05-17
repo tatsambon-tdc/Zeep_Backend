@@ -17,6 +17,7 @@ class PatternStamp(models.Model):
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
+
         )
     id = models.AutoField(primary_key=True)
 
