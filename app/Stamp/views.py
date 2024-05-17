@@ -9,7 +9,7 @@ from rest_framework.authentication import TokenAuthentication
 
 
 class PatternStampViewSet(viewsets.ModelViewSet):
-    """Viewser pour la gession de
+    """Viewser pour la gesstion de
     l'api du model PatterStamp
     """
     queryset = PatternStamp.objects.all()
