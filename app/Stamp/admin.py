@@ -8,7 +8,8 @@ from .models import (
     Encrier,
     PaieAccount,
     Type_account,
-    Paiement)
+    Paiement,
+    Commande)
 # Register your models here.
 
 admin.site.register(PatternStamp)
@@ -19,3 +20,4 @@ admin.site.register(Encrier)
 admin.site.register(PaieAccount)
 admin.site.register(Type_account)
 admin.site.register(Paiement)
+admin.site.register(Commande)

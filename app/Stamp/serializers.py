@@ -3,6 +3,7 @@
 from rest_framework import serializers
 
 from .models import (
+    Commande,
     PatternStamp,
     Monture,
     Encrier,
@@ -97,4 +98,18 @@ class PaiementSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Paiement
+        fields = '__all__'
+
+
+# -------------------------------------------------------------
+#
+#   Serialiser du model  Commande
+#
+# -------------------------------------------------------------
+
+class CommandeSerializer(serializers.ModelSerializer):
+    """Serializer de PaieAccount """
+
+    class Meta:
+        model = Commande
         fields = '__all__'

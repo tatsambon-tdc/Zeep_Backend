@@ -118,3 +118,19 @@ class Paiement(models.Model):
     val = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class Commande(models.Model):
+    """Pour les commandes de cachet"""
+    id = models.AutoField(primary_key=True)
+    id_User = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE)
+    monture = models.ForeignKey(Monture, on_delete=models.CASCADE)
+    paiement = models.ForeignKey(Paiement, on_delete=models.CASCADE)
+    id_Encrier = models.ForeignKey(Encrier, on_delete=models.CASCADE)
+    patternStamp = models.ForeignKey(PatternStamp, on_delete=models.CASCADE)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE)
+    etat = models.CharField(max_length=255)
+    format = models.CharField(max_length=255)
+    prix = models.DecimalField(max_digits=10, decimal_places=2)
+    ContenuStamp = models.CharField(max_length=1024)

@@ -39,6 +39,11 @@ router2.register('Paiement',
                  basename="adminPaiement"
                  )
 
+router2.register('Commande',
+                 views.CommandeViewSet,
+                 basename="adminCommande"
+                 )
+
 
 app_name = "Stamp"
 

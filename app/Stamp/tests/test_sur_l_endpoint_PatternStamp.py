@@ -17,6 +17,7 @@ MONTURE_URL = reverse('Stamp:monture-list')
 ENCRIER_URL = reverse('Stamp:encrier-list')
 PAIEACCOUNT_URL = reverse('Stamp:adminPaieAccount-list')
 PAIEMENT_URL = reverse('Stamp:adminPaiement-list')
+COMMANDE_URL = reverse('Stamp:adminCommande-list')
 
 
 class PublicPatternStampTests(TestCase):
@@ -193,4 +194,20 @@ class PublicPaiementTests(TestCase):
     def test_si_l_la_liste_est_refusee(self):
 
         res = self.client.get(PAIEMENT_URL)
+        self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
+
+
+class PublicCommandeTests(TestCase):
+    """Tests des appels pubblic sur l'api Commande"""
+
+    def setUp(self) -> None:
+        self.user = utilities.create_user(
+            'testoofoez@tes.tes',
+            'gfgfd')
+        self.client = APIClient()
+        self.client.force_authenticate(self.user)
+
+    def test_si_l_la_liste_est_refusee(self):
+
+        res = self.client.get(COMMANDE_URL)
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
