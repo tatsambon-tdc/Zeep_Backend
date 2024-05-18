@@ -168,7 +168,7 @@ class PublicPaieAccountTests(TestCase):
 
     def setUp(self) -> None:
         self.user = utilities.create_user(
-            'test@tes.tes',
+            'testoofoez@tes.tes',
             'gfgfd')
         self.client = APIClient()
         self.client.force_authenticate(self.user)
