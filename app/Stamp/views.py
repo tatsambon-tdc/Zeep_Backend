@@ -2,7 +2,7 @@
 
 from rest_framework import viewsets
 
-from .models import PatternStamp, Monture, Encrier
+from .models import PatternStamp, Monture, Encrier, PaieAccount
 from . import serializers
 from .permissions import IsStaff
 from rest_framework.authentication import TokenAuthentication
@@ -98,3 +98,14 @@ class AdminEncrierViewSet(MyViewSetsMinIn, viewsets.ModelViewSet):
 
     serializer_class = serializers.EncrierSerializer
     serializer_detail_class = serializers.EncrierDetailSerializer
+
+
+class PaieAccountViewSet(viewsets.ModelViewSet):
+    """
+    L'administration des PaieAccount
+    """
+    queryset = PaieAccount.objects.all()
+    permission_classes = [IsStaff]
+    authentication_classes = [TokenAuthentication]
+
+    serializer_class = serializers.PaieAccountSerializer

@@ -23,6 +23,11 @@ router2.register('Monture',
                  views.AdminMontureViewSet,
                  basename="adminMonture"
                  )
+router2.register('PaieAccount',
+                 views.PaieAccountViewSet,
+                 basename="adminPaieAccount"
+                 )
+
 
 router2.register('Encrier',
                  views.AdminMontureViewSet,

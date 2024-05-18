@@ -5,7 +5,9 @@ from rest_framework import serializers
 from .models import (
     PatternStamp,
     Monture,
-    Encrier
+    Encrier,
+    PaieAccount
+
     )
 
 
@@ -67,3 +69,17 @@ class EncrierDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Encrier
         fields = ['id', 'prix', 'couleur', 'disponible', 'creator']
+
+# -------------------------------------------------------------
+#
+#   Serialiser du model  PaieAccount
+#
+# -------------------------------------------------------------
+
+
+class PaieAccountSerializer(serializers.ModelSerializer):
+    """Serializer de PaieAccount """
+
+    class Meta:
+        model = PaieAccount
+        fields = '__all__'

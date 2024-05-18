@@ -14,8 +14,8 @@ from . import utilities
 
 PATTERNSTAMP_URL = reverse('Stamp:patternstamp-list')
 MONTURE_URL = reverse('Stamp:monture-list')
-
 ENCRIER_URL = reverse('Stamp:encrier-list')
+PAIEACCOUNT_URL = reverse('Stamp:adminPaieAccount-list')
 
 
 class PublicPatternStampTests(TestCase):
@@ -161,3 +161,19 @@ class PublicEncrierTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data[0]['disponible'], encrier_de_test.disponible)
         self.assertEqual(res.data[0]['couleur'], encrier_de_test.couleur)
+
+
+class PublicPaieAccountTests(TestCase):
+    """Tests des appels pubblic sur l'api PaieAccount"""
+
+    def setUp(self) -> None:
+        self.user = utilities.create_user(
+            'test@tes.tes',
+            'gfgfd')
+        self.client = APIClient()
+        self.client.force_authenticate(self.user)
+
+    def test_si_l_la_liste_est_refusee(self):
+
+        res = self.client.get(PAIEACCOUNT_URL)
+        self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
