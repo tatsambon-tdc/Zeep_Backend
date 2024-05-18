@@ -7,7 +7,8 @@ from .models import (
     Type,
     Encrier,
     PaieAccount,
-    Type_account)
+    Type_account,
+    Paiement)
 # Register your models here.
 
 admin.site.register(PatternStamp)
@@ -17,3 +18,4 @@ admin.site.register(Type)
 admin.site.register(Encrier)
 admin.site.register(PaieAccount)
 admin.site.register(Type_account)
+admin.site.register(Paiement)

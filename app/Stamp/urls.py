@@ -34,6 +34,12 @@ router2.register('Encrier',
                  basename="adminEncrier"
                  )
 
+router2.register('Paiement',
+                 views.PaiementViewSet,
+                 basename="adminPaiement"
+                 )
+
+
 app_name = "Stamp"
 
 urlpatterns = [

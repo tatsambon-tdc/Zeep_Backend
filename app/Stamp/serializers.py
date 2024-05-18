@@ -6,7 +6,8 @@ from .models import (
     PatternStamp,
     Monture,
     Encrier,
-    PaieAccount
+    PaieAccount,
+    Paiement
 
     )
 
@@ -82,4 +83,18 @@ class PaieAccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PaieAccount
+        fields = '__all__'
+
+# -------------------------------------------------------------
+#
+#   Serialiser du model  PAIEMENT
+#
+# -------------------------------------------------------------
+
+
+class PaiementSerializer(serializers.ModelSerializer):
+    """Serializer de PaieAccount """
+
+    class Meta:
+        model = Paiement
         fields = '__all__'

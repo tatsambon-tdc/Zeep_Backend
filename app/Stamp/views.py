@@ -2,7 +2,11 @@
 
 from rest_framework import viewsets
 
-from .models import PatternStamp, Monture, Encrier, PaieAccount
+from .models import (PatternStamp,
+                     Monture,
+                     Encrier,
+                     PaieAccount,
+                     Paiement)
 from . import serializers
 from .permissions import IsStaff
 from rest_framework.authentication import TokenAuthentication
@@ -109,3 +113,14 @@ class PaieAccountViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication]
 
     serializer_class = serializers.PaieAccountSerializer
+
+
+class PaiementViewSet(viewsets.ModelViewSet):
+    """
+    L'administration des PaieAccount
+    """
+    queryset = Paiement.objects.all()
+    permission_classes = [IsStaff]
+    authentication_classes = [TokenAuthentication]
+
+    serializer_class = serializers.PaiementSerializer
