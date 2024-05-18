@@ -9,11 +9,18 @@ from Stamp import views
 
 router = SimpleRouter()
 router2 = SimpleRouter()
+
 router.register('PatternStamp', views.PatternStampViewSet)
+router.register('Monture', views.MontureViewSet)
 
 router2.register('PatternStamp',
                  views.AdminPatternStampViewSet,
                  basename="adminPatternStamp"
+                 )
+
+router2.register('Monture',
+                 views.AdminMontureViewSet,
+                 basename="adminMonture"
                  )
 
 

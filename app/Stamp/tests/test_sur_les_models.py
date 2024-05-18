@@ -7,7 +7,6 @@ from django.test import TestCase
 
 
 from Stamp.models import PatternStamp
-from decimal import Decimal
 
 from .utilities import create_forme, create_user
 
@@ -31,14 +30,11 @@ class PuclicModelPatternStampTest(TestCase):
             "creator": user,
             "titre": "Titre Du paternStamp de test",
             "forme": forme,
-            "prix": Decimal('5.5'),
 
         }
         PatternStamp_de_test_created = PatternStamp.objects.create(
             **PatternStamp_de_test)
 
-        self.assertEqual(PatternStamp_de_test["prix"],
-                         PatternStamp_de_test_created.prix)
         self.assertEqual(PatternStamp_de_test["forme"],
                          PatternStamp_de_test_created.forme)
 
@@ -60,7 +56,6 @@ class PuclicModelPatternStampTest(TestCase):
             "creator": user,
             "titre": "Titre Du paternStamp de test",
             "forme": forme,
-            "prix": Decimal('5.5'),
 
         }
         PatternStamp_de_test2 = {
@@ -68,7 +63,6 @@ class PuclicModelPatternStampTest(TestCase):
             "creator": user,
             "titre": "Titre Du paternStamp de test",
             "forme": forme,
-            "prix": Decimal('5.5'),
 
         }
 

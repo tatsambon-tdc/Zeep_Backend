@@ -3,7 +3,7 @@ test"""
 
 
 from django.contrib.auth import get_user_model
-from Stamp.models import PatternStamp, Forme
+from Stamp.models import PatternStamp, Forme, Monture, Type
 
 
 def create_user(email, password):
@@ -37,3 +37,17 @@ def create_forme(forme):
     PatternStamp"""
 
     return Forme.objects.create(forme=forme)
+
+
+def create_type(type):
+
+    """Creation et renvoie d'une Forme
+    utilisable pour la creation d'un
+    PatternStamp"""
+
+    return Type.objects.create(type=type)
+
+
+def create_Monture(donnee):
+    """Creation et rencoi d'un Monture"""
+    return Monture.objects.create(**donnee)
