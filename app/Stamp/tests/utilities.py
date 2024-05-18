@@ -3,7 +3,7 @@ test"""
 
 
 from django.contrib.auth import get_user_model
-from Stamp.models import PatternStamp, Forme, Monture, Type
+from Stamp.models import PatternStamp, Forme, Monture, Type, Encrier
 
 
 def create_user(email, password):
@@ -49,5 +49,10 @@ def create_type(type):
 
 
 def create_Monture(donnee):
-    """Creation et rencoi d'un Monture"""
+    """Creation et rencoi d'unr Monture"""
     return Monture.objects.create(**donnee)
+
+
+def create_encrier(donnee):
+    """Creation et rencoi d'un Encrier"""
+    return Encrier.objects.create(**donnee)

@@ -53,6 +53,7 @@ class PatternStamp(models.Model):
 
 
 class Monture(models.Model):
+    """Model Monture"""
 
     prix = models.DecimalField(max_digits=10, decimal_places=2)
     name = models.CharField(max_length=255)
@@ -68,6 +69,20 @@ class Monture(models.Model):
         on_delete=models.CASCADE,
         )
 
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        )
+
+
+class Encrier(models.Model):
+    """Model Encrier"""
+
+    couleur = models.CharField(max_length=255)
+    disponible = models.BooleanField(default=False)
+    prix = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,

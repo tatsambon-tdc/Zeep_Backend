@@ -4,7 +4,8 @@ from rest_framework import serializers
 
 from .models import (
     PatternStamp,
-    Monture
+    Monture,
+    Encrier
     )
 
 
@@ -24,6 +25,11 @@ class PatternStampDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = PatternStamp
         fields = ['id', 'titre', 'forme', 'creator']
+# -------------------------------------------------------------
+#
+#   Serialiser du model  MONTURE
+#
+# -------------------------------------------------------------
 
 
 class MontureSerializer(serializers.ModelSerializer):
@@ -40,3 +46,24 @@ class MontureDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Monture
         fields = ['prix', 'name', 'forme', 'type', 'creator']
+# -------------------------------------------------------------
+#
+#   Serialiser du model  ENCRIER
+#
+# -------------------------------------------------------------
+
+
+class EncrierSerializer(serializers.ModelSerializer):
+    """Serializer de liste de Encrier """
+
+    class Meta:
+        model = Encrier
+        fields = ['id',  'couleur', 'disponible', ]
+
+
+class EncrierDetailSerializer(serializers.ModelSerializer):
+    """Serializer de detail de Encrier """
+
+    class Meta:
+        model = Encrier
+        fields = ['id', 'prix', 'couleur', 'disponible', 'creator']

@@ -3,6 +3,7 @@ Test sur les enpoints de l'API des
 PATTERNSTAMP
 """
 
+from decimal import Decimal
 from django.test import TestCase
 from django.urls import reverse
 
@@ -12,8 +13,9 @@ from rest_framework import status
 from . import utilities
 
 PATTERNSTAMP_URL = reverse('Stamp:patternstamp-list')
-ADMINPATTERNSTAMP_URL = reverse('Stamp:adminPatternStamp-list')
 MONTURE_URL = reverse('Stamp:monture-list')
+
+ENCRIER_URL = reverse('Stamp:encrier-list')
 
 
 class PublicPatternStampTests(TestCase):
@@ -128,3 +130,34 @@ class PublicMontureTests(TestCase):
         self.assertEqual(res.data['forme'], self.monture.forme.pk)
         self.assertEqual(res.data['name'], self.monture.name)
         self.assertEqual(res.data['prix'], self.monture.prix)
+
+
+class PublicEncrierTests(TestCase):
+    """Test des appels publique
+    sur l'API de monture
+    """
+
+    def setUp(self) -> None:
+        self.client = APIClient()
+        self.user = utilities.create_user(
+            'test@mail.xi',
+            "testpassword"
+        )
+        self.client.force_authenticate(self.user)
+
+    def test_si_la_liste_est_assecible(self):
+        """Test sur l'endpoint de liste"""
+
+        donnee = {
+            'couleur': 'Noir',
+            'disponible': True,
+            'creator': self.user,
+            'prix': Decimal('525.20')
+
+        }
+        encrier_de_test = utilities.create_encrier(donnee)
+
+        res = self.client.get(ENCRIER_URL)
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data[0]['disponible'], encrier_de_test.disponible)
+        self.assertEqual(res.data[0]['couleur'], encrier_de_test.couleur)

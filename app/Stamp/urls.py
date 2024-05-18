@@ -12,6 +12,7 @@ router2 = SimpleRouter()
 
 router.register('PatternStamp', views.PatternStampViewSet)
 router.register('Monture', views.MontureViewSet)
+router.register('Encrier', views.EncrierViewSet)
 
 router2.register('PatternStamp',
                  views.AdminPatternStampViewSet,
@@ -23,6 +24,10 @@ router2.register('Monture',
                  basename="adminMonture"
                  )
 
+router2.register('Encrier',
+                 views.AdminMontureViewSet,
+                 basename="adminEncrier"
+                 )
 
 app_name = "Stamp"
 

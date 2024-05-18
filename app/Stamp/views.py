@@ -2,7 +2,7 @@
 
 from rest_framework import viewsets
 
-from .models import PatternStamp, Monture
+from .models import PatternStamp, Monture, Encrier
 from . import serializers
 from .permissions import IsStaff
 from rest_framework.authentication import TokenAuthentication
@@ -18,6 +18,11 @@ class MyViewSetsMinIn():
             return self.serializer_class
 
         return self.serializer_detail_class
+
+# -------------------------------------------------------------------
+#   Vues de PatternStamp
+#
+# --------------------------------------------------------------------
 
 
 class PatternStampViewSet(MyViewSetsMinIn, viewsets.ReadOnlyModelViewSet):
@@ -42,6 +47,9 @@ class AdminPatternStampViewSet(MyViewSetsMinIn, viewsets.ModelViewSet):
     serializer_detail_class = serializers.PatternStampDetailSerializer
 
 # -------------------------------------------------------------------
+#   Vues de Montures
+#
+# --------------------------------------------------------------------
 
 
 class MontureViewSet(MyViewSetsMinIn, viewsets.ReadOnlyModelViewSet):
@@ -63,3 +71,30 @@ class AdminMontureViewSet(MyViewSetsMinIn, viewsets.ModelViewSet):
 
     serializer_class = serializers.MontureSerializer
     serializer_detail_class = serializers.MontureDetailSerializer
+
+# -------------------------------------------------------------------
+#   Vues de Encrier
+#
+# --------------------------------------------------------------------
+
+
+class EncrierViewSet(MyViewSetsMinIn, viewsets.ReadOnlyModelViewSet):
+    """
+    Lecture des Encriers Pour
+    les users
+    """
+    queryset = Encrier.objects.all()
+    serializer_class = serializers.EncrierSerializer
+    serializer_detail_class = serializers.EncrierDetailSerializer
+
+
+class AdminEncrierViewSet(MyViewSetsMinIn, viewsets.ModelViewSet):
+    """
+    L'administration des Encrier
+    """
+    queryset = Encrier.objects.all()
+    permission_classes = [IsStaff]
+    authentication_classes = [TokenAuthentication]
+
+    serializer_class = serializers.EncrierSerializer
+    serializer_detail_class = serializers.EncrierDetailSerializer
