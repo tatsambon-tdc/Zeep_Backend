@@ -19,7 +19,7 @@ class PatternStampSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PatternStamp
-        fields = ['id', 'titre']
+        fields = ['id', 'titre', 'image']
 
 
 class PatternStampDetailSerializer(serializers.ModelSerializer):
@@ -28,7 +28,7 @@ class PatternStampDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PatternStamp
-        fields = ['id', 'titre', 'forme', 'creator']
+        fields = ['id', 'titre', 'forme', 'creator', 'image']
 # -------------------------------------------------------------
 #
 #   Serialiser du model  MONTURE
@@ -41,7 +41,7 @@ class MontureSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Monture
-        fields = ['id', 'prix', 'name', 'forme', 'type']
+        fields = ['id', 'prix', 'name', 'forme', 'type', 'image']
 
 
 class MontureDetailSerializer(serializers.ModelSerializer):
@@ -49,7 +49,7 @@ class MontureDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Monture
-        fields = ['prix', 'name', 'forme', 'type', 'creator']
+        fields = ['prix', 'name', 'forme', 'type', 'creator', 'image']
 # -------------------------------------------------------------
 #
 #   Serialiser du model  ENCRIER
@@ -62,7 +62,7 @@ class EncrierSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Encrier
-        fields = ['id',  'couleur', 'disponible', ]
+        fields = ['id',  'couleur', 'disponible', 'image']
 
 
 class EncrierDetailSerializer(serializers.ModelSerializer):
@@ -70,7 +70,7 @@ class EncrierDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Encrier
-        fields = ['id', 'prix', 'couleur', 'disponible', 'creator']
+        fields = ['id', 'prix', 'couleur', 'disponible', 'creator', 'image']
 
 # -------------------------------------------------------------
 #

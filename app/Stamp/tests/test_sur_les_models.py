@@ -4,9 +4,9 @@ Tests sur les models de l'application Stamp
 
 from django.db import IntegrityError
 from django.test import TestCase
+from unittest.mock import patch
 
-
-from Stamp.models import PatternStamp
+from Stamp.models import PatternStamp, PatternStamp_image_file_path
 
 from .utilities import create_forme, create_user
 
@@ -70,3 +70,13 @@ class PuclicModelPatternStampTest(TestCase):
             **PatternStamp_de_test1)
         with self.assertRaises(IntegrityError):
             PatternStamp.objects.create(**PatternStamp_de_test2)
+
+    @patch('Stamp.models.uuid.uuid4')
+    def test_patternStamp_image_example_file_name(self, mock_uuid):
+        """Test  de la generation des chemin des image"""
+
+        uuid = 'test-uuid'
+        mock_uuid.return_value = uuid
+        file_path = PatternStamp_image_file_path(None, 'example.jpg')
+
+        self.assertEqual(file_path, f'uploads/PatternStamp/{uuid}.jpg')

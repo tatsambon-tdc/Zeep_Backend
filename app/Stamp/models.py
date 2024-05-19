@@ -3,6 +3,35 @@
 from django.db import models
 from django.conf import settings
 from django.core.exceptions import ValidationError
+import uuid
+import os
+
+
+def PatternStamp_image_file_path(instance,  filename):
+    """Generation de nom de fichier aleatoir"""
+
+    extension = os.path.splitext(filename)[1]
+    filename = f'{uuid.uuid4()}{extension}'
+
+    return os.path.join('uploads', 'PatternStamp', filename)
+
+
+def Monture_image_file_path(instance,  filename):
+    """Generation de nom de fichier aleatoir"""
+
+    extension = os.path.splitext(filename)[1]
+    filename = f'{uuid.uuid4()}{extension}'
+
+    return os.path.join('uploads', 'Monture', filename)
+
+
+def Encrier_image_file_path(instance,  filename):
+    """Generation de nom de fichier aleatoir"""
+
+    extension = os.path.splitext(filename)[1]
+    filename = f'{uuid.uuid4()}{extension}'
+
+    return os.path.join('uploads', 'Encrier', filename)
 
 
 def validate_unique_field(value):
@@ -56,8 +85,9 @@ class PatternStamp(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    # image_example = models.ImageField(upload_to=
-    # 'MEDIA/image_example/PatternStamp',blank=False,null=False)
+    image = models.ImageField(
+                              upload_to=PatternStamp_image_file_path,
+                              null=True)
 
 
 class Monture(models.Model):
@@ -81,6 +111,7 @@ class Monture(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         )
+    image = models.ImageField(upload_to=Monture_image_file_path, null=True)
 
 
 class Encrier(models.Model):
@@ -95,6 +126,7 @@ class Encrier(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         )
+    image = models.ImageField(upload_to=Encrier_image_file_path, null=True)
 
 
 class PaieAccount(models.Model):
